@@ -51,10 +51,10 @@
     - Out-of-scope samples $O(x_e)$: Includes samples that are not related to $x_e$
     - We expect the edited function $f_{\theta_e}$ to behave like the following:
 
-$$
+```math
 f_{\theta_e}(x)=\begin{cases}y_{\text{updated}} &\text{if }x\in I(x_e) \\
 f_{\theta}(x) &\text{if }x\in O(x_e)\end{cases}
-$$
+```
 
 ### Task definition
 Usually consists of the following 3 tasks:
@@ -65,7 +65,7 @@ Usually consists of the following 3 tasks:
 ## Evaluation for Knowledge Editing
 ### Reliability
 - Description: 
-    Success rate of editing **based on the edit description** $Z_e$, which is evaluated using the **accuracy** of the post-edit model $f_{\theta_e}$
+    <br> Success rate of editing **based on the edit description** $Z_e$, which is evaluated using the **accuracy** of the post-edit model $f_{\theta_e}$
 - Definition:
 
 ```math
@@ -74,7 +74,7 @@ Usually consists of the following 3 tasks:
 
 ### Generalization
 - Description:
-    Success rate (accuracy) within input set containing **in-scope samples** $(x_e',y_e')\sim I_e(x_e)$
+    <br> Success rate (accuracy) within input set containing **in-scope samples** $(x_e',y_e')\sim I_e(x_e)$
 - Definition:
 
 ```math
@@ -83,7 +83,7 @@ Usually consists of the following 3 tasks:
 
 ### Portability (Robust generalization)
 - Description:
-    Success rate of editing when **transferring knowledge to related content** $(x_e',y_e')\sim P_e(x_e)$. Similar to generalization, but is **evaluated on factual reasoning** (one-hop, synonym, subject-replace, reverse-relation, one-to-one relation) not predicted label.
+    <br> Success rate of editing when **transferring knowledge to related content** $(x_e',y_e')\sim P_e(x_e)$. Similar to generalization, but is **evaluated on factual reasoning** (one-hop, synonym, subject-replace, reverse-relation, one-to-one relation) not predicted label.
 - Definition:
 
 ```math
@@ -91,14 +91,15 @@ Usually consists of the following 3 tasks:
 ```
 
 - Factual reasoning tasks: **WIP ...**
-    - one-hop: 
-    - synonym: 
-    - subject-replace: 
-    - reverse-relation: 
-    - one-to-one relation: 
-    - **<span style="font-size:1.2em;">Multi-hop:</span>**
+    - One-hop: 
+    - Synonym: 
+    - Subject-replace: 
+    - Reverse-relation: 
+    - One-to-one relation: 
+    - Multi-hop:
 ### Locality (Specificity)
-- Description: Evaluates if model's output **changes only within the editing scope $I_e(x_e)$, without affecting out-of-scope samples $O_e(x_e)$**. Checks if the edited model $f_{\theta_e}$ output remains aligned with the original model $f_{\theta}$.
+- Description:
+    <br> Evaluates if model's output **changes only within the editing scope $I_e(x_e)$, without affecting out-of-scope samples $O_e(x_e)$**. Checks if the edited model $f_{\theta_e}$ output remains aligned with the original model $f_{\theta}$.
 - Definition:
 
 ```math
@@ -117,14 +118,14 @@ Usually consists of the following 3 tasks:
 - **Multi-head self-attention (MHSA)** layers aggregates knowledge from the previous layer through self-attention.
 - Knowledge retrieved from FFN at (a), then brought to output token (b) by self-attention
     ![image](imgs/MLP.svg)
-    <br>(Reference: https://rome.baulab.info/)
+    <br> (Reference: https://rome.baulab.info/)
 - Steps:
     1. Early (Bottom) MLP layers in the last-subject position encodes many subject-related attirubtes.
     2. MHSA aggregates and propagates the attributes to the prediction position.
     3. Middle layer MHSA in the prediction position queries from previouse layer and extract information.
     4. Top layer MLPs are also associated with semantic/fact kowledge
 ![layers](imgs/layers.png)
-<br>(Reference: https://arxiv.org/pdf/2401.01286.pdf)
+<br> (Reference: https://arxiv.org/pdf/2401.01286.pdf)
 
 ### Knowledge Editing for LLMs
 - Requirements:
@@ -138,10 +139,26 @@ Usually consists of the following 3 tasks:
 ### Expose LLM to New Knowledge During Inference
 #### Method Type 1
 - [SERAC](https://arxiv.org/abs/2206.06520)
+    <br> In addition to the original base model, this method uses an **edit memory storage** (directly stores edit descriptions), a **scope classifier** that determines if the input is related to edit descriptions, and a **Retrieval-Augmented Counterfactual Model** that deals with input samples that are related to edit descriptions.
+    - Advantage: Workable with small scope classifier and counterfactual models, doesn't require tuning the original base model. Can handle multiple edits.
+    - Disadvantage: Constrained by the edit memory storage (not scalable). In other words, this method is not applicable when there is a large amount of edit descriptions
 - [IKE](https://arxiv.org/abs/2305.12740)
-- [MQuAKE](https://arxiv.org/abs/2305.14795)
+    <br> Apply in-context learning to knowledge editing. Uses edit description, in-scope samples, and out-of-scope samples to demonstrate when the model should update its predictions.
+    - Advantage: Better locality and generalization. Applicable to many LLMs.
+    - Disadvantage: Not applicable to large amount of edit descriptions as the input length of LLMs is limited.
+- [MeLLo](https://arxiv.org/abs/2305.14795) (Also the paper that proposed MQuAKE)
+    <br> Inspired by SERAC, uses additional memory to store edit descriptions. They make the model decompose the multi-hop questions into sub-questions, generate tentative answers, then iteratively self-check if the answers are consistent with the edit descriptions and correct the answers if not.
+    - Advantage: Improved generalization, easy to add/remove edit descriptions.
+    - Disadvantage: Similar to SERAC, limited by memory and retrieval accuracy/relevance.
 - [DeepEdit](https://arxiv.org/abs/2401.10471)
-
+    <br> Proposed to view knowledge editing as decoding with contraints. They proposed to use a DFS-based progressive decoding method (multi-step reasoning) with information retrieval that can be applied to blackbox LLMs.
+    - Proposed constraints:
+        - Uniqueness: Ensure each reasoning step introduces new information.
+        - Coherence: Ensure the current reasoning step is relevant to the previous step.
+        - Awareness: Ensure the current reasoning step does not contradict with edit descriptions. Uses information retrieval to obtain relevant edit descriptions instead of looping through everything to save time.
+        - Relevance: Ensures each reasoning step is helpful for finding the final answer. 
+    - Advantage: More succinct and faithful reasoning while enforcing the new knowledge. Great quantitative improvement.
+    - Disadvantage: *Not sure, but looks like it would cost a lot of time & resource*
 ### Learning Knowledge Through LLM Parameters
 #### Method Type 2: Utilize additional parameters
 - [CaliNET](https://arxiv.org/abs/2210.03329)
@@ -161,7 +178,7 @@ Usually consists of the following 3 tasks:
 - [Task Arithmetic](https://arxiv.org/abs/2212.04089)
 - [DUNE](https://arxiv.org/abs/2311.16087)
 - [LEME](https://arxiv.org/abs/2402.09394)
-- Concept editing: To appear 2024
+- Concept editing: To appear 2024 according to [this](https://drive.google.com/file/d/1fkTbVeRJSWmU7fBDeNf1OhHEkLSofQde/view)
 - [EVEDIT](https://arxiv.org/abs/2402.11324)
 - [Relation-based](https://arxiv.org/abs/2311.09053)
 - [Temporal Knowledge Editing](https://arxiv.org/abs/2312.05497)
