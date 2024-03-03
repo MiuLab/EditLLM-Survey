@@ -162,8 +162,22 @@ Usually consists of the following 3 tasks:
 ### Learning Knowledge Through LLM Parameters
 #### Method Type 2: Utilize additional parameters
 - [CaliNET](https://arxiv.org/abs/2210.03329)
+    <br> Includes two stages: (1) Contrastive Knowledge Assessment (CKA): Detect incorrect factual knowledge stored in LLMs by calculating the ratio of probability of correct knowledge and expected probability of incorrect knowledge; (2) Knowledge Calibration: Introduce extra modules $\Delta \mathrm{FFN}$ that has the same input and output dimension as the original feedforward module $\mathrm{FFN}$. The output of the extra module is directly summed with the output of the original feedforward module ($\mathrm{FFN}'(H)=\mathrm{FFN}(H)+\Delta\mathrm{FFN}(H)$). The latent dimension of $\Delta \mathrm{FFN}$ is typically very small, so the method only introduces a small amount of parameters.
+    - Advantage: CKA addresses problems when their are multiple correct answers (superior to rank-based false knowledge detection). The proposed calibration technique preserves the model perplexity and semantic understanding ability.
+    - Disadvantage: Edit reliability seems to be inferior to the continue pretraining method. The proposed CKA methodology is somewhat biased as the mismatch in the scope of correct and incorrect knowledge may cause their probability to be incomparible. Locality of the method is not evaluated.
 - [T-Patcher](https://arxiv.org/abs/2301.09785)
+    <br> For each edit (mistake), add one tunable neuron to the last FFN layer and freeze all other parameters. In addition the original loss, the authors proposed 2 losses  that addresses reliability (by ensuring the predicted value of the extra neuron is not 0 after activation when the input is the edit sample) and locality (minimize the prediction value of the extra neuron when fed with other samples).
+    - Advantage: Great performance, light weight.
+    - Disadvantage: Computationally expensive.
 - [GRACE](https://arxiv.org/abs/2211.11031)
+    <br> Adds GRACE adapter to cache the latent space embeddings that correspond to errors/mistakes and explicitly learn what the new embedding should be. It acts like a key-value cache that maps error embeddings to new embeddings. To enhance generalization, an $\epsilon$-ball is introduced so that embeddings that are close enough to the cached embeddings would be substituted with the new learned embedding. An algorithm is proposed to govern how the key-value pair and size of $\epsilon$-ball is updated.
+    - Advantage: Great performance compared to existing methods, especially when there are a lot of edits. Preserves model perplexity after tons of edits. Easy to trace and inspect the edits by looking through the cache.
+    - Disadvantage: As mentioned in the limitations section, the method might not be able to react to implication questions related to edited knowledge. (Maybe it wouldn't work when it encounters multi-hop questions) Computationally expensive (slow). May require tuning of the initial size of $\epsilon$-balls.
+- [MELO](https://arxiv.org/abs/2312.11795)
+    <br> Uses dynamic LoRA to learn the edited knowledge. Embeddings (last hidden state) of edits are stored as clusters, each cluster corresponds to a non-overlapping LoRA block. An algorithm is introduced to govern the update the clusters and the radius of the clusters.
+    - Advantage: Great at dealing with sequential updates. A lot faster than GRACE.
+    - Disadvantage: May have the same problem as GRACE? (not sure)
+
 
 #### Method Type 3: Direct edit of intrinsic knowledge (Locating and Editing)
 - [Knowledge editor](https://arxiv.org/abs/2104.08164)
