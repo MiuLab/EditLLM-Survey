@@ -4,27 +4,29 @@
 
 <!-- toc -->
 
-- [Motivation](#motivation)
-- [Problem Definition](#problem-definition)
-  * [Description](#description)
-  * [Definition](#definition)
-  * [Task definition](#task-definition)
-- [Evaluation for Knowledge Editing](#evaluation-for-knowledge-editing)
-  * [Reliability](#reliability)
-  * [Generalization](#generalization)
-  * [Portability (Robust generalization)](#portability-robust-generalization)
-  * [Locality (Specificity)](#locality-specificity)
-  * [Other stuff](#other-stuff)
-- [Methodology](#methodology)
-  * [Mechanism of Knowledge Storage of LLM (Transformer-based)](#mechanism-of-knowledge-storage-of-llm-transformer-based)
-  * [Knowledge Editing for LLMs](#knowledge-editing-for-llms)
-  * [Expose LLM to New Knowledge During Inference](#expose-llm-to-new-knowledge-during-inference)
-    + [Method Type 1](#method-type-1)
-  * [Learning Knowledge Through LLM Parameters](#learning-knowledge-through-llm-parameters)
-    + [Method Type 2: Utilize additional parameters](#method-type-2-utilize-additional-parameters)
-    + [Method Type 3: Direct edit of intrinsic knowledge (Locating and Editing)](#method-type-3-direct-edit-of-intrinsic-knowledge-locating-and-editing)
-  * [Beyond Editing Factual Knowledge](#beyond-editing-factual-knowledge)
-- [Future Prospects, Challenges, and Opportunities](#future-prospects-challenges-and-opportunities)
+- [Knowledge Editing](#knowledge-editing)
+  - [Motivation](#motivation)
+  - [Problem Definition](#problem-definition)
+    - [Description](#description)
+    - [Definition](#definition)
+    - [Task definition](#task-definition)
+  - [Evaluation for Knowledge Editing](#evaluation-for-knowledge-editing)
+    - [Reliability](#reliability)
+    - [Generalization](#generalization)
+    - [Portability (Robust generalization)](#portability-robust-generalization)
+    - [Locality (Specificity)](#locality-specificity)
+    - [Other stuff](#other-stuff)
+  - [Methodology](#methodology)
+    - [Mechanism of Knowledge Storage of LLM (Transformer-based)](#mechanism-of-knowledge-storage-of-llm-transformer-based)
+    - [Knowledge Editing for LLMs](#knowledge-editing-for-llms)
+    - [Expose LLM to New Knowledge During Inference](#expose-llm-to-new-knowledge-during-inference)
+      - [Method Type 1](#method-type-1)
+    - [Learning Knowledge Through LLM Parameters](#learning-knowledge-through-llm-parameters)
+      - [Method Type 2: Utilize additional parameters](#method-type-2-utilize-additional-parameters)
+      - [Method Type 3: Meta Learning-based methods](#method-type-3-meta-learning-based-methods)
+      - [Method Type 4: Direct edit of intrinsic knowledge (Locating and Editing)](#method-type-4-direct-edit-of-intrinsic-knowledge-locating-and-editing)
+    - [Beyond Editing Factual Knowledge](#beyond-editing-factual-knowledge)
+  - [Future Prospects, Challenges, and Opportunities](#future-prospects-challenges-and-opportunities)
 
 <!-- tocstop -->
 
@@ -178,15 +180,25 @@ Usually consists of the following 3 tasks:
     - Advantage: Great at dealing with sequential updates. A lot faster than GRACE.
     - Disadvantage: May have the same problem as GRACE? (not sure)
 
-
-#### Method Type 3: Direct edit of intrinsic knowledge (Locating and Editing)
+#### Method Type 3: Meta Learning-based methods
 - [Knowledge editor](https://arxiv.org/abs/2104.08164)
 - [MEND](https://arxiv.org/abs/2110.11309)
-- [ROME](https://arxiv.org/abs/2202.05262)
+- [MALMAN](https://arxiv.org/abs/2311.04661)
+
+#### Method Type 4: Direct edit of intrinsic knowledge (Locating and Editing)
 - [Knowledge neuron](https://arxiv.org/abs/2104.08696)
+    <br> Introduce the concept of Knowledge Neuron (KN). Adopt an existing knowledge-attribution method called Integral Gradient to identify neuron encoded specific factual knowledges in intermediate FFN. After locating the knowledge neuron, editing can be performed by (1) Suppress the neurons by setting the activations to 0 or (2) Amplfying the neurons by doubling the activation.
+    - Advantange: No additional parameters needed.
+    - Disadvantage: Some paper have shown that KN is not adquate enough to express knowledge.([What does the Knowledge Neuron Thesis Have to do with Knowledge?](https://openreview.net/pdf?id=2HJRwwbV3G))
+- [ROME](https://arxiv.org/abs/2202.05262)  (The paper also propose CounterFact dataset)
+    <br> Develop a causal intervention for identifying neuron activations that are decisive in a model’s factual predictions. Combined with previous studies, which suggests that the MLP of Transformer block can serve as key-value memory, ROME edits the mid-layer MLP via rank-one update.
+    - Advantage: No additional parameters needed. Efficient.
+    - Disadvantage: It can only edit one edit at a time. The design and the efficacy of the causal tracing process are challenged. Sequentially edit model will cause gradual & catastrophic forgetting.
 - [MEMIT](https://arxiv.org/abs/2210.07229)
+    <br> The extention of the author's previous work, ROME. Allow batch editing on multiple (consecutive) MLP layers at the middle part of Transformer layers.
+    - Advantage: Allow batch editing. Scalability is better than ROME. More robust than ROME in the setting of sequential editing. No additional parameters needed. 
+    - Disadvantage: The design and the efficacy of the causal tracing process are challenged. Sequentially edit model will still cause gradual & catastrophic forgetting.
 - [PMET](https://arxiv.org/abs/2308.08742)
-- [Meta learning](https://arxiv.org/abs/2311.04661)
 
 ### Beyond Editing Factual Knowledge
 - [Task Arithmetic](https://arxiv.org/abs/2212.04089)
