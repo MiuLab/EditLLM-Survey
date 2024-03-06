@@ -12,3 +12,6 @@
 - Model Editing Can Hurt General Abilities of Large Language Models (https://arxiv.org/abs/2401.04700)
 - Evaluating the Ripple Effects of Knowledge Editing in Language Models (https://arxiv.org/abs/2307.12976)
 - An Empirical Study of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning (https://arxiv.org/abs/2308.08747)
+- What does the Knowledge Neuron Thesis Have to do with Knowledge? (https://openreview.net/forum?id=2HJRwwbV3G)
+- Detecting Edit Failures In Large Language Models: An Improved Specificity Benchmark (https://aclanthology.org/2023.findings-acl.733/)
+- Journey to the Center of the Knowledge Neurons: Discoveries of Language-Independent Knowledge Neurons and Degenerate Knowledge Neurons (https://arxiv.org/abs/2308.13198)
