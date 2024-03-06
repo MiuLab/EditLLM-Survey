@@ -9,3 +9,4 @@
 - Large Language Models Relearn Removed Concepts (https://arxiv.org/abs/2401.01814)
 - Does Localization Inform Editing? Surprising Differences in Causality-Based Localization vs. Knowledge Editing in Language Models (https://arxiv.org/abs/2301.04213)
 - Can LMs Learn New Entities from Descriptions? Challenges in Propagating Injected Knowledge (https://arxiv.org/abs/2305.01651)
+- MedEdit: Model Editing for Medical Question Answering with External Knowledge Bases (https://arxiv.org/abs/2401.04700)
