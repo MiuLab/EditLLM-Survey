@@ -15,3 +15,4 @@
 - What does the Knowledge Neuron Thesis Have to do with Knowledge? (https://openreview.net/forum?id=2HJRwwbV3G)
 - Detecting Edit Failures In Large Language Models: An Improved Specificity Benchmark (https://aclanthology.org/2023.findings-acl.733/)
 - Journey to the Center of the Knowledge Neurons: Discoveries of Language-Independent Knowledge Neurons and Degenerate Knowledge Neurons (https://arxiv.org/abs/2308.13198)
+- Is it Possible to Edit Large Language Models Robustly?(https://arxiv.org/abs/2402.05827)
