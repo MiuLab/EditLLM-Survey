@@ -200,6 +200,7 @@ Usually consists of the following 3 tasks:
 - [Multi-lingual](https://arxiv.org/abs/2309.08952)
 - [Multi-modal](https://arxiv.org/abs/2310.08475)
 - [Knowledge Fusion](https://arxiv.org/abs/2401.10491)
+- [Knowledge unlearning for LLMs](https://arxiv.org/abs/2311.15766)
 
 ## Future Prospects, Challenges, and Opportunities
 **WIP ...**
