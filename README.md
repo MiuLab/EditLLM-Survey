@@ -199,6 +199,7 @@ Usually consists of the following 3 tasks:
 - [WilKE](https://arxiv.org/abs/2402.10987)
 - [Multi-lingual](https://arxiv.org/abs/2309.08952)
 - [Multi-modal](https://arxiv.org/abs/2310.08475)
+- [Knowledge Fusion](https://arxiv.org/abs/2401.10491)
 
 ## Future Prospects, Challenges, and Opportunities
 **WIP ...**
