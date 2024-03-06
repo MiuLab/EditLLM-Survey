@@ -11,3 +11,4 @@
 - Can LMs Learn New Entities from Descriptions? Challenges in Propagating Injected Knowledge (https://arxiv.org/abs/2305.01651)
 - Model Editing Can Hurt General Abilities of Large Language Models (https://arxiv.org/abs/2401.04700)
 - Evaluating the Ripple Effects of Knowledge Editing in Language Models (https://arxiv.org/abs/2307.12976)
+- An Empirical Study of Catastrophic Forgetting in Large Language Models During Continual Fine-tuning (https://arxiv.org/abs/2308.08747)
