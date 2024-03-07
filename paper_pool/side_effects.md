@@ -16,3 +16,6 @@
 - Detecting Edit Failures In Large Language Models: An Improved Specificity Benchmark (https://aclanthology.org/2023.findings-acl.733/)
 - Journey to the Center of the Knowledge Neurons: Discoveries of Language-Independent Knowledge Neurons and Degenerate Knowledge Neurons (https://arxiv.org/abs/2308.13198)
 - Model Editing at Scale leads to Gradual and Catastrophic Forgetting(https://arxiv.org/abs/2401.07453)
+- Detecting Edit Failures In Large Language Models: An Improved Specificity Benchmark(https://arxiv.org/abs/2305.17553)
+- MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions(https://arxiv.org/abs/2305.14795)
+- Editing Large Language Models: Problems, Methods, and Opportunities(https://arxiv.org/abs/2305.13172)
