@@ -216,3 +216,6 @@ Usually consists of the following 3 tasks:
 
 ## Future Prospects, Challenges, and Opportunities
 **WIP ...**
+
+## Other Stuff
+- [HACKMD](https://hackmd.io/@paulhuangkm/KnowledgeEdit)
