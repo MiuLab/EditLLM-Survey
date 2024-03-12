@@ -2,6 +2,52 @@
 
 ## General (Paul Huang)
 - Unveiling the Pitfalls of Knowledge Editing for Large Language Models (https://arxiv.org/abs/2310.02129)
+    - Problems:
+        - Knowledge conflict:
+            <br> In sequential edit scenarios, editing related knowledge may cause inconsistencies in model predictions, especially when the edits are contradicting.
+        - Knowledge distortion:
+            <br> Methods that modify the model parameters may harm the knowledge structure/general ability of LLM. For example, if we edit $a\rightarrow b$ then $b\rightarrow a$, the model would not perform the same even though we would expect it to perform the same as original model.
+    - Discussed Editing Methods: Fine-tuning (FT), MEND, ROME, MEMIT
+    - Benchmarks / Datasets:
+        - ConflictEdit:
+            - Task:
+                - Reverse edit: Provide contradicting edits using reverse relations.
+                - Composite edit: Knowledge contained in 2 or more edits need to be linked using knowledge contained in the original model to get the result.
+            - Evaluation Metrics:
+                <br> Let $P_{\theta^m}$ and $P_{\theta'}$ be the probability estimated by intermediate (after old edit but before new edit) and final (after old edits) model, respectively.
+                - Conflict Score (CS):
+                    <br> Suppose that new edit contradicts with old edit, we would expect the model to update its knowledge to adhere to the newer knowledge. This metric is designed to evaluate the percentage (success rate) that the edited LLM predicts newer edit to have higher probability than older edit.
+                    ```math
+                    \mathrm{CS} = \mathbb{E}\mathbb{1}\left[P_{\theta'}(k_{\text{new}}) > P_{\theta'}(k_{\text{old}})\right]
+                    ```
+                - Conflict Magnitude (CM):
+                    <br> The idea is similar to CS, but instead of success rate, this metric aims to evaluate the decrease of probability of older knowledge after the new edit.
+                    ```math
+                    \mathrm{CM} = \frac{P_{\theta^m}(k_{\text{old}}) - P_{\theta^'}(k_{\text{old}})}{P_{\theta^m}(k_{\text{old}})}
+                    ```
+                - Tied Fact Damage (TFD):
+                    <br> Similar to CM, but includes new terms for composite edits. The metric aims to evaluate how is the original knowledge (related to edits but should not be changed after edit) influenced by the edits. Ideally, the influence should be as small as possible.
+            - Results:
+                - MEND and MEMIT fails to achieve simple coverage evaluations.
+                - Reverse edit: FT and MEND successfully erased older edit when new edit arrived; ROME and MEMIT completely failed.
+                - Composite edit: FT and MEND perform well; ROME and MEMIT successfully edit the model, but does not generalize well to related stuff. TFD shows that most methods damages the knowledge structures in LLMs.
+        - Round-Edit:
+            - Task (Round-Edit):
+                <br> Edit a knowledge and **un-edit** it by introducing a new edit that changes the knowledge back. Then, evaluate how is the knowledge structure (next token probability) of LLM influenced.
+            - Metrics:
+                - Distortion (D):
+                    <br> Evaluates the JS divergence of the predicted distribution before and after knowledge editing.
+                - Ignore rate (IR):
+                    <br> Evaluates what percentage of knowledge related to the edit (set $\text{Obj}$) is discarded or overlooked.
+                    ```math
+                    \mathrm{IR} = \sum_(o\in\text{Obj})\mathbb{E}(P_{\theta}(o)>P_{\theta'}(o))
+                    ```
+                - Failure rate (FR):
+                    <br> Evaluates the percentage of cases where IR is greater than $50%$.
+            - Results:
+                - Knowledge distortion is more significant in FT and MEND.
+                - ROME and MEMIT showed high success rate in each edit of Round-Edit while minimally damaging the inner knowledge structure.
+    - Proposed a multi-label edit (MLE) method to mitigate the knowledge distortion problem.
 - Navigating the Dual Facets: A Comprehensive Evaluation of Sequential Memory Editing in Large Language Models (https://arxiv.org/abs/2402.11122)
 - Editing Large Language Models: Problems, Methods, and Opportunities(https://arxiv.org/abs/2305.13172)
 - Emptying the Ocean with a Spoon: Should We Edit Models? (https://arxiv.org/abs/2310.11958)
