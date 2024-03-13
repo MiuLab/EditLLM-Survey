@@ -18,9 +18,9 @@
                 - Conflict Score (CS):
                     <br> Suppose that new edit contradicts with old edit, we would expect the model to update its knowledge to adhere to the newer knowledge. This metric is designed to evaluate the percentage (success rate) that the edited LLM predicts newer edit to have higher probability than older edit.
 
-                    ```math
+                    $$
                     \mathrm{CS} = \mathbb{E}\mathbb{1}\left[P_{\theta'}(k_{\text{new}}) > P_{\theta'}(k_{\text{old}})\right]
-                    ```
+                    $$
 
                 - Conflict Magnitude (CM):
                     <br> The idea is similar to CS, but instead of success rate, this metric aims to evaluate the decrease of probability of older knowledge after the new edit.
@@ -47,7 +47,7 @@
                     ```math
                     \mathrm{IR} = \sum_(o\in\text{Obj})\mathbb{E}(P_{\theta}(o)>P_{\theta'}(o))
                     ```
-                    
+
                 - Failure rate (FR):
                     <br> Evaluates the percentage of cases where IR is greater than $50%$.
             - Results:
