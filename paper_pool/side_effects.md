@@ -18,12 +18,7 @@
                 - Conflict Score (CS):
                     <br> Suppose that new edit contradicts with old edit, we would expect the model to update its knowledge to adhere to the newer knowledge. This metric is designed to evaluate the percentage (success rate) that the edited LLM predicts newer edit to have higher probability than older edit. $$\mathrm{CS} = \mathbb{E}\mathbb{1}\left[P_{\theta'}(k_{\text{new}}) > P_{\theta'}(k_{\text{old}})\right]$$
                 - Conflict Magnitude (CM):
-                    <br> The idea is similar to CS, but instead of success rate, this metric aims to evaluate the decrease of probability of older knowledge after the new edit.
-
-                    ```math
-                    \mathrm{CM} = \frac{P_{\theta^m}(k_{\text{old}}) - P_{\theta^'}(k_{\text{old}})}{P_{\theta^m}(k_{\text{old}})}
-                    ```
-
+                    <br> The idea is similar to CS, but instead of success rate, this metric aims to evaluate the decrease of probability of older knowledge after the new edit. $$\mathrm{CM} = \frac{P_{\theta^m}(k_{\text{old}}) - P_{\theta'}(k_{\text{old}})}{P_{\theta^m}(k_{\text{old}})}$$
                 - Tied Fact Damage (TFD):
                     <br> Similar to CM, but includes new terms for composite edits. The metric aims to evaluate how is the original knowledge (related to edits but should not be changed after edit) influenced by the edits. Ideally, the influence should be as small as possible.
             - Results:
@@ -37,11 +32,7 @@
                 - Distortion (D):
                     <br> Evaluates the JS divergence of the predicted distribution before and after knowledge editing.
                 - Ignore rate (IR):
-                    <br> Evaluates what percentage of knowledge related to the edit (set $\text{Obj}$) is discarded or overlooked.
-                    
-                    ```math
-                    \mathrm{IR} = \sum_(o\in\text{Obj})\mathbb{E}(P_{\theta}(o)>P_{\theta'}(o))
-                    ```
+                    <br> Evaluates what percentage of knowledge related to the edit (set $\text{Obj}$) is discarded or overlooked. $$\mathrm{IR} = \sum_{o\in\text{Obj}}\mathbb{E}(P_{\theta}(o)>P_{\theta'}(o))$$
                     
                 - Failure rate (FR):
                     <br> Evaluates the percentage of cases where IR is greater than $50%$.
