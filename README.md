@@ -60,7 +60,7 @@
 - Limitation & Future Prospects
     - Leverage RAG/external memory to improve portability
     - Leverage noise to improve generality
-    - Improve localization method
+    - Improve knowledge locating method
     - Knowledge re-learn with re-training
 - Conclusion
 
