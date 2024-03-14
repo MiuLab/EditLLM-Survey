@@ -56,7 +56,7 @@
         - Bad portability / generalization
         - Bad specificity (locality)
         - Catastrophic forgetting
-        - Localization is not required for knowledge editing
+        - Knowledge-locating is not required for knowledge editing
 - Limitation & Future Prospects
     - Leverage RAG/external memory to improve portability
     - Leverage noise to improve generality
