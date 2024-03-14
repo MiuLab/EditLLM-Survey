@@ -58,6 +58,10 @@
         - Catastrophic forgetting
         - Localization is not required for knowledge editing
 - Limitation & Future Prospects
+    - Leverage RAG/external memory to improve portability
+    - Leverage noise to improve generality
+    - Improve localization method
+    - Knowledge re-learn with re-training
 - Conclusion
 
 ## Motivation
