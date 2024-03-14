@@ -4,6 +4,7 @@
 
 <!-- toc -->
 
+- [Proposed Structure](#proposed-structure)
 - [Motivation](#motivation)
 - [Problem Definition](#problem-definition)
   * [Description](#description)
@@ -29,6 +30,37 @@
 - [Other Stuff](#other-stuff)
 
 <!-- tocstop -->
+
+## Proposed Structure
+- Abstract
+- Introduction
+    - Background info on LLMs & knowledge editing
+    - Problems of knowledge editing
+    - Organization of the paper
+- Motivation
+    - Why knowledge editing is important?
+    - Why we want to talk about problems of knowledge editing?
+- Knowledge editing
+    - Brief overview (1-2 paragraph)
+    - Definition
+        - Problem definition
+        - Metrics and Respective Benchmarks
+            從 metrics 帶到 benchmark 要探討的東西
+    - Introduce current methods and their performance
+- Problems of Knowledge Editing
+    - Brief overview (1-2 paragraph)
+    - Definition and Respective Benchmarks
+        Introduce the problems (and the respective benchmarks that aim to find and address those problems)
+        - Catastrophic forgetting
+        - Ripple effect
+        - Bad specificity (locality)
+        - Mismatch between success rate and current findings
+- Main discussion
+    - Brief overview (1-2 paragraph)
+    - Problems of current methods (using results from previous benchmarks)
+        - Divide the section into multiple parts based on the problems (which method has what kind of problems)
+- Limitation & Future Prospects
+- Conclusion
 
 ## Motivation
 - LLM contains unwanted info
