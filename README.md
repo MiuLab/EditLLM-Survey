@@ -47,18 +47,15 @@
         - Metrics and Respective Benchmarks
             從 metrics 帶到 benchmark 要探討的東西
     - Introduce current methods and their performance
-- Problems of Knowledge Editing
+- Problems of Knowledge Editing (Main discussion)
     - Brief overview (1-2 paragraph)
     - Definition and Respective Benchmarks
         Introduce the problems (and the respective benchmarks that aim to find and address those problems)
+        Discuss the methods that has the corresponding problems
         - Bad portability / generalization
         - Bad specificity (locality)
         - Catastrophic forgetting
         - Localization is not required for knowledge editing
-- Main discussion
-    - Brief overview (1-2 paragraph)
-    - Problems of current methods (using results from previous benchmarks)
-        - Divide the section into multiple parts based on the problems (which method has what kind of problems)
 - Limitation & Future Prospects
 - Conclusion
 
