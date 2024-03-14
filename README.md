@@ -50,8 +50,9 @@
 - Problems of Knowledge Editing (Main discussion)
     - Brief overview (1-2 paragraph)
     - Definition and Respective Benchmarks
-        Introduce the problems (and the respective benchmarks that aim to find and address those problems)
-        Discuss the methods that has the corresponding problems
+        <br> Introduce the problems (and the respective benchmarks that aim to find and address those problems)
+        <br> Discuss the methods that has the corresponding problems
+        <br> Include experimental results
         - Bad portability / generalization
         - Bad specificity (locality)
         - Catastrophic forgetting
