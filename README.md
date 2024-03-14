@@ -52,7 +52,7 @@
     - Definition and Respective Benchmarks
         Introduce the problems (and the respective benchmarks that aim to find and address those problems)
         - Catastrophic forgetting
-        - Ripple effect
+        - Bad portability / generalization
         - Bad specificity (locality)
         - Mismatch between success rate and current findings
 - Main discussion
