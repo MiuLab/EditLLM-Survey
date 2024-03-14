@@ -51,10 +51,10 @@
     - Brief overview (1-2 paragraph)
     - Definition and Respective Benchmarks
         Introduce the problems (and the respective benchmarks that aim to find and address those problems)
-        - Catastrophic forgetting
         - Bad portability / generalization
         - Bad specificity (locality)
-        - Mismatch between success rate and current findings
+        - Catastrophic forgetting
+        - Localization is not required for knowledge editing
 - Main discussion
     - Brief overview (1-2 paragraph)
     - Problems of current methods (using results from previous benchmarks)
