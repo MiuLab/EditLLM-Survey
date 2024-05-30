@@ -1,4 +1,5 @@
-# Knowledge Editing
+# Editing the Mind of Giants: An In-Depth Exploration of Knowledge Editing in Large Language Models
+
 
 <!-- Reference: https://github.com/jonschlinkert/markdown-toc -->
 
