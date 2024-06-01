@@ -1,5 +1,5 @@
 # Editing the Mind of Giants: An In-Depth Exploration of Pitfalls of Knowledge Editing in Large Language Models
-
+- [arXiv Paper]()
 
 <!-- Reference: https://github.com/jonschlinkert/markdown-toc -->
 
@@ -12,6 +12,18 @@
     + [Reliability](#reliability)
     + [Generalization](#generalization)
     + [Locality](#locality)
+  * [Current Methods](#current-methods)
+    + [Parameter-Modifying](#parameter-modifying)
+    + [Parameter-Preserving](#parameter-preserving)
+- [Challenges of Knowledge Editing](#challenges-of-knowledge-editing)
+  * [Inability to Logically Inference and Robustly Generalize](#inability-to-logically-inference-and-robustly-generalize)
+  * [Unintended Alteration of Non-Target Knowledge](#unintended-alteration-of-non-target-knowledge)
+  * [Deterioration of General Abilities](#deterioration-of-general-abilities)
+- [Discussion](#discussion)
+- [Future Prospect](#future-prospect)
+  * [Leveraging Information Retrieval and External Memory](#leveraging-information-retrieval-and-external-memory)
+  * [Improve Understandings of LLMs' Internal Knowledge Structures](#improve-understandings-of-llms-internal-knowledge-structures)
+  * [Improve Robustness of Knowledge Editing](#improve-robustness-of-knowledge-editing)
 
 <!-- tocstop -->
 
@@ -89,3 +101,19 @@ Locality is typically assessed using the locality dataset to evaluate edits on u
 
 ### Deterioration of General Abilities
 In sequential editing scenarios, models often face issues like gradual forgetting and catastrophic forgetting, with meta-learning-based methods being more prone to knowledge loss than located-then-edit methods. Perplexity has been proposed as an alternative metric to indicate model collapse due to its correlation with downstream performance. It consistently increases across all parameter-modified methods and different LLMs in sequential editing scenarios. Additionally, post-edited models show a decline in performance across various downstream NLP tasks, indicating that parameter modification through model editing negatively impacts the general capabilities of LLMs.
+
+## Discussion
+> Please refer to our survey paper for more detailed explanation on experimental setup and results
+
+Current editing methodologies often underperform in robust generalization and locality. IKE, which uses prompt demonstrations, excels in single edit conditions but struggles with multiple edits, indicating confusion when editing multiple related facts. Fine-tuning and meta-learning-based methods handle multiple related edits better. For locality, IKE remains stable in single edit settings, while parameter-modifying methods excel in Other Attribution but decline in other metrics, except for MEMIT, which stays stable. In multiple edit scenarios, SERAC shows low success and distortion rates due to its difficulty in recovering edited facts. The number of edits affects methods differently: meta-learning methods like MEND degrade significantly after 10-20 edits, locate-and-edit methods like ROME and KN after 10 edits, while MEMIT remains stable after 40 edits due to its multi-layer adjustment strategy. GRACE and SERAC, which store edited facts with additional parameters or use external memory, show no change in downstream task performance after edits. Overall, parameter-modifying methods degrade downstream task performance, while parameter-preserving methods maintain stable performance even after multiple edits.
+
+## Future Prospect
+
+### Leveraging Information Retrieval and External Memory
+Research has shown that using external knowledge bases rather than relying solely on internal knowledge can help guide Large Language Models (LLMs) in generating content based on predefined facts. This approach effectively separates the factual knowledge from the inference processes, reducing potential biases in the models. External knowledge bases can include extensive text corpora, structured tables, or simple key-value databases. These sources can be used by either fine-tuning the LLMs to improve their information retrieval or by employing prompting and in-context learning techniques to query these sources without altering the model parameters. This method eliminates the need to verify and edit false information within the LLMs and allows for the use of attribution and reflection methods, ensuring that generated content aligns with the external knowledge base, thereby enhancing both accuracy and accountability.
+
+### Improve Understandings of LLMs' Internal Knowledge Structures
+While identifying factual knowledge storage in LLMs has been extensively studied, the correlation between knowledge location and model editing success is low. Although factual knowledge is strongly linked to feed-forward network layers, updates to multi-head self-attention layers also yield improved outcomes. This suggests that simply locating fact storage does not fully explain knowledge structures in LLMs. Further research into how knowledge locations interact with model predictions is crucial for enhancing LLM interpretability and controllability. Additionally, preserving LLMs' general capabilities is vital for assessing model editing efficacy. Recent breakthroughs in identifying regions related to general linguistic abilities have opened new research directions. Targeted modifications can be performed while avoiding alterations in these critical areas, preventing the deterioration of general abilities. This approach ensures that edits do not compromise overall LLM performance, significantly improving the specificity and effectiveness of current model editing methods.
+
+### Improve Robustness of Knowledge Editing
+Even after a successful edit, a revised model may reject the modification during extended dialogues, reverting to the pre-edit version (reversion) or providing an ambiguous answer (confusion). Experiments show that the more popular the knowledge in the benchmark, the easier it is for the modified model to revert to the original concept, highlighting the limited robustness of current editing strategies. A deeper understanding of how LLMs store and process different knowledge entities is crucial for more robust editing. There is also a lack of specific benchmarks and automated metrics addressing these issues. Knowledge-focused editing does not avoid hallucinations inherited from the pre-edit model. TruthX attempts to reduce hallucination by using a parameter-preserved approach, mapping the LLM's internal representation to semantic and truthful spaces and editing the truthfulness in that space. Combining truthfulness and knowledge adjustment in the same space may offer a practical solution.
