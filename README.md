@@ -26,6 +26,7 @@ f_{\theta_e}(x_e) = y_e, \forall (x_e, y_e) \in Z_e
 ```
 
 As shown in the figure below, the ideal edited model $f_{\theta_e}$ should satisfy three properties: **reliability**, **generalization**, and **locality**.
+
 <img src="imgs/basic_metric.png" width="250" align=center>
 
 #### Reliability
