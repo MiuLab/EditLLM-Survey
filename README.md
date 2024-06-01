@@ -48,3 +48,9 @@ The editing process should not affect instances unrelated to the edit queries. T
 ```math
 \mathbb{E}_{(x_{loc}, y_{loc})\sim L(x_e)} \mathbb{1} \{ f_{\theta_e}(x_{loc}) = y_{loc} \}
 ```
+### Current Methods
+We categorized current methods into parameter-modifying and parameter-preserving editing methods, each containing several strategies. An overview and illustration of current methods are included in the figure below.
+
+<p align="center">
+    <img src="imgs/edit_methods.png" width="500">
+</p>
