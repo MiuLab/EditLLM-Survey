@@ -7,7 +7,7 @@
 
 <!-- toc -->
 
-- [Overview of Knowledgge Editing](#overview-of-knowledgge-editing)
+- [🔧 Overview of Knowledgge Editing](#%F0%9F%94%A7-overview-of-knowledgge-editing)
   * [Problem Definition](#problem-definition)
     + [Reliability](#reliability)
     + [Generalization](#generalization)
@@ -15,15 +15,16 @@
   * [Current Methods](#current-methods)
     + [Parameter-Modifying](#parameter-modifying)
     + [Parameter-Preserving](#parameter-preserving)
-- [Challenges of Knowledge Editing](#challenges-of-knowledge-editing)
+- [🔔 Challenges of Knowledge Editing](#%F0%9F%94%94-challenges-of-knowledge-editing)
   * [Inability to Logically Inference and Robustly Generalize](#inability-to-logically-inference-and-robustly-generalize)
   * [Unintended Alteration of Non-Target Knowledge](#unintended-alteration-of-non-target-knowledge)
   * [Deterioration of General Abilities](#deterioration-of-general-abilities)
-- [Discussion](#discussion)
-- [Future Prospect](#future-prospect)
+- [📃 Discussion](#%F0%9F%93%83-discussion)
+- [💡 Future Prospects](#%F0%9F%92%A1-future-prospects)
   * [Leveraging Information Retrieval and External Memory](#leveraging-information-retrieval-and-external-memory)
   * [Improve Understandings of LLMs' Internal Knowledge Structures](#improve-understandings-of-llms-internal-knowledge-structures)
   * [Improve Robustness of Knowledge Editing](#improve-robustness-of-knowledge-editing)
+- [Citation](#citation)
 
 <!-- tocstop -->
 
