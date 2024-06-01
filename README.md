@@ -25,8 +25,8 @@ The goal of knowledge editing is to efficiently derive the edited model $f_{\the
 f_{\theta_e}(x_e) = y_e, \forall (x_e, y_e) \in Z_e
 ```
 
-<img src="imgs/basic_metric.png" width="550" align=center>
-As shown in the figure above, the ideal edited model $f_{\theta_e}$ should satisfy three properties: **reliability**, **generalization**, and **locality**.
+As shown in the figure below, the ideal edited model $f_{\theta_e}$ should satisfy three properties: **reliability**, **generalization**, and **locality**.
+<img src="imgs/basic_metric.png" width="250" align=center>
 
 #### Reliability
 Given an edit query $(x_e, y_e)$, the edited model $f_{\theta_e}$ should output the target answer $y_e$ when given the target input $x_e$, i.e. $f_{\theta_e}(x_e) = y_e$. The reliability of an editing method is measured by calculating the average edit success rate:
