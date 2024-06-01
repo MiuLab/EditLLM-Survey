@@ -26,8 +26,9 @@ f_{\theta_e}(x_e) = y_e, \forall (x_e, y_e) \in Z_e
 ```
 
 As shown in the figure below, the ideal edited model $f_{\theta_e}$ should satisfy three properties: **reliability**, **generalization**, and **locality**.
-
-<img src="imgs/basic_metric.png" width="250" align=center>
+<p align="center">
+    <img src="imgs/basic_metric.png" width="350">
+</p>
 
 #### Reliability
 Given an edit query $(x_e, y_e)$, the edited model $f_{\theta_e}$ should output the target answer $y_e$ when given the target input $x_e$, i.e. $f_{\theta_e}(x_e) = y_e$. The reliability of an editing method is measured by calculating the average edit success rate:
