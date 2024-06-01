@@ -73,3 +73,13 @@ In contrast to the previous category, parameter-preserving methods alter LLMs' o
 - **In-Context Learning and Decoding:**</br>
     Certain strategies require no additional parameters, which includes [IKE](https://arxiv.org/abs/2305.12740) and [DeepEdit](https://arxiv.org/abs/2401.10471).
 
+## Challenges of Knowledge Editing
+
+Knowledge editing methods have been widely researched, yet there is a lack of comprehensive study on the challenges related to knowledge editing. In this section, we discuss the pitfalls of knowledge editing from three perspectives: low portability and generalization, low locality, and catastrophic forgetting. We organized the benchmarks related to the first two into the table below.
+
+<p align="center">
+    <img src="imgs/benchmarks.png" width="500">
+</p>
+
+### Inability to Logically Inference and Robustly Generalize
+When updating a fact, it is essential not only to revise the specific knowledge but also to assess the impact on the related reasoning chain. The concept of portability has been introduced to evaluate the consequences of an edit and the robustness of generalization. Metrics such as **Subject Replace**, **Reversed Relation**, and **One Hop** are used to measure the generalization ability of editing methods in handling similar subjects, identical relations, and derivations. Additionally, **Logical Generalization** and **Compositionality** examine whether edited knowledge can be inferred in composite relations. Further studies assess the reasoning ability of edited models across various schemes using complex question-answering datasets and multi-hop questions. To address confusion from simultaneous edits of logically related facts, the **ConflictEdit** benchmark is proposed to evaluate methods handling conflicting edits.
