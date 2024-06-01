@@ -117,3 +117,10 @@ While identifying factual knowledge storage in LLMs has been extensively studied
 
 ### Improve Robustness of Knowledge Editing
 Even after a successful edit, a revised model may reject the modification during extended dialogues, reverting to the pre-edit version (reversion) or providing an ambiguous answer (confusion). Experiments show that the more popular the knowledge in the benchmark, the easier it is for the modified model to revert to the original concept, highlighting the limited robustness of current editing strategies. A deeper understanding of how LLMs store and process different knowledge entities is crucial for more robust editing. There is also a lack of specific benchmarks and automated metrics addressing these issues. Knowledge-focused editing does not avoid hallucinations inherited from the pre-edit model. TruthX attempts to reduce hallucination by using a parameter-preserved approach, mapping the LLM's internal representation to semantic and truthful spaces and editing the truthfulness in that space. Combining truthfulness and knowledge adjustment in the same space may offer a practical solution.
+
+## References
+
+If you find our paper beneficial for your research, please consider citing our paper
+
+```
+```
