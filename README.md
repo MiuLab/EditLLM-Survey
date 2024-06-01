@@ -31,18 +31,18 @@ As shown in the figure below, the ideal edited model $f_{\theta_e}$ should satis
 #### Reliability
 Given an edit query $(x_e, y_e)$, the edited model $f_{\theta_e}$ should output the target answer $y_e$ when given the target input $x_e$, i.e. $f_{\theta_e}(x_e) = y_e$. The reliability of an editing method is measured by calculating the average edit success rate:
 ```math
-\mathbb{E}_{(x_e', y_e')\sim Z_e} \mathbbm{1}\{ f_{\theta_e}(x_e') = y_e' \}
+\mathbb{E}_{(x_e', y_e')\sim Z_e} \mathbb{1}\{ f_{\theta_e}(x_e') = y_e' \}
 ```
 
 #### Generalization
 The edited model should generalize the edited knowledge to relevant instances. The generalization metric is commonly formulated as the average success rate on the neighboring set:
 ```math
-\mathbb{E}_{(x_e', y_e')\sim N(x_e, y_e)} \mathbbm{1} \{ f_{\theta_e}(x_e') = y_e' \},
+\mathbb{E}_{(x_e', y_e')\sim N(x_e, y_e)} \mathbb{1} \{ f_{\theta_e}(x_e') = y_e' \},
 ```
 where $N(x_e, y_e)$ is the set of neighboring instances of an edit query $(x_e, y_e)$. Earlier works evaluate this metric by rephrasing the input prompts.
 
 #### Locality
 The editing process should not affect instances unrelated to the edit queries. The locality set of an edit query $(x_e, y_e)$ can be defined as $L(x_e) = \{ (x_{loc}, y_{loc}) \in \mathbb{X} \times \mathbb{Y}\ \mathrm{s.t}\ x_{loc} \notin N(x_e, y_e) \land f_{\theta_0}(x_{loc}) = y_{loc} \}$. The locality, also known as specificity, of a editing method is measured by calculating the level of invariance of model output before and after the edits, which can be calculated as follows:
 ```math
-\mathbb{E}_{(x_{loc}, y_{loc})\sim L(x_e)} \mathbbm{1} \{ f_{\theta_e}(x_{loc}) = y_{loc} \}
+\mathbb{E}_{(x_{loc}, y_{loc})\sim L(x_e)} \mathbb{1} \{ f_{\theta_e}(x_{loc}) = y_{loc} \}
 ```
