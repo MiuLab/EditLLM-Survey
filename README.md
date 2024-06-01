@@ -54,3 +54,22 @@ We categorized current methods into parameter-modifying and parameter-preserving
 <p align="center">
     <img src="imgs/edit_methods.png" width="500">
 </p>
+
+#### Parameter-Modifying
+This category of methods, including meta-learning methods and locate-and-edit strategies, update LLMs' knowledge by modifying their parameters.
+
+- Meta-learning
+    Methods within the meta-learning class utilize a hyper-network that is trained to predict the updated network parameters. This strategy includes [KnowledgeEditor](https://arxiv.org/abs/2104.08164), [MEND(https://arxiv.org/abs/2110.11309)], and [MALMEN](https://openreview.net/forum?id=L6L1CJQ2PE).
+- Locate and Edit
+    Methods that use the other strategy, namely locate-and-edit, first identify the locations of knowledge within LLMs and edit those areas by updating corresponding parameters. This strategy includes [Knowledge Neuron](https://arxiv.org/abs/2104.08696), [ROME](https://rome.baulab.info/), [MEMIT](https://memit.baulab.info/), [PMET](https://arxiv.org/abs/2308.08742), and [EMMET](https://arxiv.org/abs/2403.14236).
+
+#### Parameter-Preserving
+In contrast to the previous category, parameter-preserving methods alter LLMs' output by adding new parameters, integrating external memory, or employing strategies like in-context learning and devising decoding strategies while keeping the pre-trained LLM unchanged.
+
+- Additional Parameters
+    Some methods utilize additional parameters, such as adding new neurons or employing parameter-efficient techniques. Such methods include [CaliNET](https://arxiv.org/abs/2210.03329), [T-Patcher](https://arxiv.org/abs/2301.09785), [GRACE](https://arxiv.org/abs/2211.11031), and [MELO](https://arxiv.org/abs/2312.11795).
+- External Memory
+    This class of methods utilize external memories for editing, which includes [SERAC](https://arxiv.org/abs/2206.06520) and [MeLLo](https://arxiv.org/abs/2305.14795).
+- In-Context Learning and Decoding
+    Certain strategies require no additional parameters, which includes [IKE](https://arxiv.org/abs/2305.12740) and [DeepEdit](https://arxiv.org/abs/2401.10471).
+
