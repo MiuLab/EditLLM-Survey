@@ -124,4 +124,12 @@ Even after a successful edit, a revised model may reject the modification during
 If you find our paper beneficial for your research, please consider citing our paper
 
 ```
+@misc{hsueh2024editing,
+      title={Editing the Mind of Giants: An In-Depth Exploration of Pitfalls of Knowledge Editing in Large Language Models}, 
+      author={Cheng-Hsun Hsueh and Paul Kuo-Ming Huang and Tzu-Han Lin and Che-Wei Liao and Hung-Chieh Fang and Chao-Wei Huang and Yun-Nung Chen},
+      year={2024},
+      eprint={2406.01436},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
 ```
