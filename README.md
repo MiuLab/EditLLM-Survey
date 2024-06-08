@@ -1,5 +1,5 @@
 # Editing the Mind of Giants: An In-Depth Exploration of Pitfalls of Knowledge Editing in Large Language Models
-- [arXiv Paper]()
+- [arXiv Paper](https://arxiv.org/abs/2406.01436)
 
 <!-- Reference: https://github.com/jonschlinkert/markdown-toc -->
 
